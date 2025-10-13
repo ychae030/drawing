@@ -1,0 +1,64 @@
+.line_area {
+	position: relative;
+	width: 140px;
+	display: inline-block;
+	border-radius: 12px;
+	background: #fff;
+	margin-left: 15px;
+	vertical-align: top;
+	height: 75px;
+	box-sizing: border-box;
+	text-align: center;
+	box-shadow: 0px 0px 10px #DADAE2;
+}
+
+.line_area > button {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+}
+
+.line1 {
+	width: 102px;
+	height: 15px;
+	background-image: url(../../../assets/images/line1.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
+	margin-top: 6px;
+}
+
+.line2 {
+	width: 100px;
+	height: 12px;
+	background-image: url(../../../assets/images/line2.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
+}
+
+.line3 {
+	width: 101px;
+	height: 20px;
+	background-image: url(../../../assets/images/line3.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
+}
+
+.line1on,
+.line1:hover {
+	background-image: url(../../../assets/images/line1_h.png);
+	background-size: 100%;
+}
+
+.line2on,
+.line2:hover {
+	background-image: url(../../../assets/images/line2_h.png);
+	background-size: 100%;
+}
+.line3on,
+.line3:hover {
+	background-image: url(../../../assets/images/line3_h.png);
+	background-size: 100%;
+}

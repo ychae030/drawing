@@ -1,0 +1,35 @@
+.pen {
+	display: flex;
+}
+
+.pen > button {
+	position: relative;
+	display: inline-block;
+	width: 88px;
+	height: 74px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 0px 2px;
+	border-radius: 12px;
+	box-shadow: 0px 0px 10px #DADAE2;
+	box-sizing: border-box;
+	background-size: 100%;
+}
+
+.pen > button.on,
+.pen > button:hover {
+	border: 3px solid #000;
+}
+
+.pencil {
+	background-image: url(../../../assets/images/pen.png);
+}
+
+.namepen {
+	background-image: url(../../../assets/images/color_pen.png);
+}
+
+.erase {
+	background-image: url(../../../assets/images/eraser.png);
+}

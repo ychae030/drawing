@@ -1,0 +1,17 @@
+.eraseAll {
+	position: absolute;
+	background: #4E504F;
+	color: #ffffff;
+	border: 2px solid #414340;
+	border-radius: 50px;
+	font-size: 25px;
+	width: 144px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	display: inline-block;
+	margin: 20px 50px;
+	cursor: pointer;
+	font-family: 'Pretendard', sans-serif;
+	font-weight: 600;
+}

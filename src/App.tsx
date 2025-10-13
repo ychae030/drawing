@@ -1,9 +1,10 @@
 import './App.css';
+import DrawBox from './components/DrawBox/DrawBox';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <DrawBox />
     </div>
   );
 }

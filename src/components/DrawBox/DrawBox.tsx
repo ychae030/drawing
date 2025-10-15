@@ -3,7 +3,7 @@ import styles from './DrawBox.module.css'
 import PenSelector from './PenSelector/PenSelector';
 import ThicknessSelector from './ThicknessSelector/ThicknessSelector';
 import LineSelector from './LineSelector/LineSelector';
-import ColorPalette from './ColorPall/ColorPalette';
+import ColorPalette from './ColorPalette/ColorPalette';
 import EraseAllButton from './EraseAllButton/EraseAllButton';
 
 export type PenType = 'pencil' | 'namepen' | 'erase' | null;

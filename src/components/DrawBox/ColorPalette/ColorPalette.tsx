@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ColorPalette.module.css';
 import { color } from '../../../constant';
 
-type ColorPaletteProps = {
+export type ColorPaletteProps = {
 	colorIdx: number;
 	setColorIdx: React.Dispatch<React.SetStateAction<number>>
 }

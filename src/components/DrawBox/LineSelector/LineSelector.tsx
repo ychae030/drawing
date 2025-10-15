@@ -1,7 +1,7 @@
-import { lineType } from '../DrawBox';
+import { lineType } from '../../../App';
 import styles from './LineSelector.module.css'
 
-type LineSelectorProps = {
+export type LineSelectorProps = {
 	lineType: lineType;
 	handleLineClick: (line: lineType) => void;
 }

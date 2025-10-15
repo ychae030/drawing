@@ -1,6 +1,6 @@
 import styles from './EraseAllButton.module.css'
 
-type EraseAllButtonProps = {
+export type EraseAllButtonProps = {
 	handleEraseAllClick: () => void;	
 }
 

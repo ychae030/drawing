@@ -1,13 +1,13 @@
-import { thicknessTpye } from '../DrawBox';
+import { thicknessType } from '../../../App';
 import styles from './ThicknessSelector.module.css'
 
-type ThicknessSelectorProps = {
-	thickness: thicknessTpye;
-	setThickness: React.Dispatch<React.SetStateAction<thicknessTpye>>;
+export type ThicknessSelectorProps = {
+	thickness: thicknessType;
+	setThickness: React.Dispatch<React.SetStateAction<thicknessType>>;
 }
 
 export default function ThicknessSelector({ thickness, setThickness }: ThicknessSelectorProps) {
-	const options: thicknessTpye[] = [5, 20, 40];
+	const options: thicknessType[] = [5, 20, 40];
 	
 	return (
 		<div className={styles.thickness_box}>

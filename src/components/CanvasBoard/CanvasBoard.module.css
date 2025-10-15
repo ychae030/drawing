@@ -1,0 +1,7 @@
+.main {
+	background-color: white;
+}
+.overlay {
+	background: none;
+	pointer-events: none;	
+}

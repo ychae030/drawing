@@ -1,7 +1,7 @@
+import { PenType } from '../../../App';
 import styles from './PenSelector.module.css'
-import { PenType } from '../DrawBox';
 
-type PenSelectorProps = {
+export type PenSelectorProps = {
 	pentype: PenType;
 	handlePenClick: (pen: PenType) => void;
 }

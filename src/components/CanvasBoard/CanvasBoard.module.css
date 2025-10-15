@@ -1,7 +1,16 @@
+.main,
+.overlay {
+	pointer-events: none;	
+}
 .main {
+	z-index: 1;
 	background-color: white;
 }
 .overlay {
+	z-index: 2;
 	background: none;
-	pointer-events: none;	
+}
+.hit {
+	z-index: 3;
+	
 }

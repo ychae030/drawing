@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import './App.css';
-import CanvasBoard from './components/CanvasBoard/CanvasBoard';
+import CanvasBoard, { CanvasBoardHandle } from './components/CanvasBoard/CanvasBoard';
 import DrawBox from './components/DrawBox/DrawBox';
 import { color } from './constant';
 
@@ -9,7 +9,7 @@ export type thicknessType = 5 | 20 | 40;
 export type lineType = 'line1' | 'line2' | 'line3' | null;
 
 function App() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<CanvasBoardHandle | null>(null);
   const [pentype, setPentype] = useState<PenType>('pencil')
   const [thickness, setThickness] = useState<thicknessType>(5)
   const [lineType, setLineType] = useState<lineType>(null)
@@ -28,6 +28,10 @@ function App() {
   const handleEraseAllClick = () => {
     setPentype('pencil');
     setLineType(null);
+
+    if (canvasRef.current) {
+      canvasRef.current.clearCanvas();
+    }
   }
 
   return (
@@ -55,4 +59,3 @@ function App() {
 }
 
 export default App;
-

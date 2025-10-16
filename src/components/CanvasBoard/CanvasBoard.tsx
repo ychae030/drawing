@@ -42,36 +42,86 @@ const CanvasBoard = forwardRef<CanvasBoardHandle, CanvasBoardProps>(
     useImperativeHandle(ref, () => ({ clearCanvas }), [clearCanvas]);
 
     /* --- setup common stroke --- */
-    const setupStroke = (ctx: CanvasRenderingContext2D) => {
+    const setupStroke = (
+      ctx: CanvasRenderingContext2D,
+      mode: 'overlay' | 'main'
+    ) => {
       ctx.lineWidth = thickness;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.globalAlpha = penType === 'namepen' ? 0.3 : 1;
-      ctx.globalCompositeOperation = penType === 'erase' ? 'destination-out' : 'source-over';
+      ctx.globalAlpha = penType === 'namepen' ? 0.5 : 1;
+
+      switch(penType) {
+        case 'erase': {ctx.globalCompositeOperation = 'destination-out'}; break;
+        case 'pencil': ctx.globalCompositeOperation = 'source-over'; break;
+        case 'namepen' : ctx.globalCompositeOperation = 'xor'; break;
+      }
       ctx.setLineDash([]); // solid
-      
-      if(penType !== 'erase') ctx.strokeStyle = color;
+      console.log(ctx);
+      if(penType !== 'erase') {
+        ctx.strokeStyle = color
+        ctx.fillStyle = color
+      }else {
+        ctx.strokeStyle = 'rgba(0,0,0,1)'
+        ctx.fillStyle = 'rgba(0,0,0,1)'
+      };
     }
 
     /* --- draw preview --- */
     const drawPreview = (toX: number, toY: number) => {
       const ov = overlayRef.current;
+      const main = mainRef.current;
       const start = startRef.current;
-      if(!ov || !start) return;
+      if(!ov || !main || !start) return;
 
       const octx = ov.getContext('2d');
-      if(!octx) return;
+      const mctx = main.getContext('2d');
+      if(!octx || !mctx) return;
 
       // octx.clearRect(0, 0, ov.width, ov.height);
-      setupStroke(octx);
+      setupStroke(octx, 'overlay');
+      // setupStroke(mctx, 'main');
+
       octx.beginPath();
       octx.moveTo(start.x, start.y);
 
-      // 자유곡선(연필,마커,지우개)
-      octx.lineTo(toX, toY);
-      octx.stroke();
+      if (lineType === "line1") {
+        // 직선
+        octx.clearRect(0, 0, ov.width, ov.height);
+        octx.lineTo(toX, toY);
+        octx.stroke();
+      } else if (lineType === "line2") {
+        // 점선
+        octx.clearRect(0, 0, ov.width, ov.height);
+        octx.setLineDash([thickness * 2, thickness * 1.2]);
+        octx.lineTo(toX, toY);
+        octx.stroke();
+      } else if (lineType === "line3") {
+        // 화살표(간단)
+        octx.clearRect(0, 0, ov.width, ov.height);
+        octx.lineTo(toX, toY);
+        octx.stroke();
 
-      startRef.current = { x: toX, y: toY };
+        const angle = Math.atan2(toY - start.y, toX - start.x);
+        const head = Math.max(6, thickness * 2);
+        octx.beginPath();
+        octx.moveTo(toX, toY);
+        octx.lineTo(
+          toX - head * Math.cos(angle - Math.PI / 6),
+          toY - head * Math.sin(angle - Math.PI / 6)
+        );
+        octx.moveTo(toX, toY);
+        octx.lineTo(
+          toX - head * Math.cos(angle + Math.PI / 6),
+          toY - head * Math.sin(angle + Math.PI / 6)
+        );
+        octx.stroke();
+      } else {
+        // 자유곡선(연필/마커/지우개) → 프리핸드 느낌
+        octx.lineTo(toX, toY);
+        octx.stroke();
+        startRef.current = { x: toX, y: toY };
+      }
     }
 
     /* --- combine overlay with main --- */
@@ -140,3 +190,7 @@ const CanvasBoard = forwardRef<CanvasBoardHandle, CanvasBoardProps>(
 );
 
 export default CanvasBoard;
+
+/* --- 
+카테고리별 지출 > 통제
+--- */
